@@ -1,0 +1,91 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            background-image: url("{% static 'images/notifications.jpg' %}"); /* Update to your background image */
+            background-size: cover;
+            background-position: center;
+        }
+        .content {
+            z-index: 1;
+            position: relative;
+            margin-top: 100px; /* To make space for the navbar */
+            width: 80%;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 30px;
+            color: #d81b60;
+        }
+        .notification-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+            width: 100%;
+        }
+        .notification-item {
+            background-color: #FFB6C1;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+        }
+        .back-home-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #d81b60;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .back-home-btn:hover {
+            background-color: #b0003a;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Back to Home Button -->
+    <a href="{% url 'home' %}" class="back-home-btn">Back to Home</a>
+
+    <!-- Notifications -->
+    <div class="content">
+        <h1>Notifications</h1>
+        <div class="notification-list">
+            {% for notification in notifications %}
+                <div class="notification-item">
+                    <h3>{{ notification.title }}</h3>
+                    <p>{{ notification.message }}</p>
+                    <small>Posted on: {{ notification.created_at }}</small>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

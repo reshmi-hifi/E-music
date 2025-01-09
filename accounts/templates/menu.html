@@ -1,0 +1,190 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genres</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts for custom font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Place the video behind content */
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+            margin-top: 100px; /* To make space for the navbar */
+        }
+
+        @keyframes jump {
+    0% {
+        transform: scale(1) translateY(0); /* Normal size, no vertical movement */
+    }
+    50% {
+        transform: scale(1.1) translateY(-5px); /* Slightly bigger and moved up */
+    }
+    100% {
+        transform: scale(1) translateY(0); /* Return to normal size */
+    }
+}
+
+.btn:hover {
+    animation: jump 0.3s ease-in-out; /* Apply the jump effect on hover */
+}
+
+
+        /* Title styling with shimmer effect */
+        h1 {
+            font-size: 4em;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 30px;
+            color: white;
+            position: relative;
+            display: inline-block;
+        }
+        /* Shimmer effect */
+        h1::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%,  rgba(255,255,255,0) 100%);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    50% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+h1 {
+    font-size: 4em; /* Make the title larger */
+    color: transparent;
+    background-image: linear-gradient(90deg, #ff6f61, #ffcc00, #ff6f61);
+    background-size: 200% 100%;
+    background-position: -200% 0;
+    animation: shimmer 3s infinite ease-in-out; /* Shimmer effect that goes back and forth */
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 columns */
+            gap: 15px;
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .button-grid .btn {
+            padding: 20px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #000000;
+            text-align: center;
+        }
+        .back-home-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #d81b60;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .back-home-btn:hover {
+            background-color: #b0003a;
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Background -->
+    <video autoplay loop muted>
+        <source src="{% static 'videos/menu.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Back to Home Button -->
+    <a href="{% url 'home' %}" class="back-home-btn">Back to Home</a>
+
+    <!-- Container for the Genre Buttons -->
+    <div class="container">
+        <h1>Genres</h1>
+        <div class="button-grid">
+            <!-- Each button represents a genre with the respective color -->
+            <a href="https://open.spotify.com/genre/0JQ5DAqbMKFFzDl7qN9Apr" class="btn" style="background-color: skyblue;">Chill</a>
+            <a href="https://open.spotify.com/playlist/37i9dQZF1EIeEGqN5vooFV" class="btn" style="background-color: yellow;">Commute</a>
+            <a href="https://open.spotify.com/playlist/7n7DGZiTXT37yuIcSZ1efJ" class="btn" style="background-color: beige;">Energy Boosters</a>
+            <a href="https://open.spotify.com/playlist/37i9dQZF1DWTwbZHrJRIgD" class="btn" style="background-color: greenyellow;">Feel Good</a>
+            
+            <a href="https://open.spotify.com/genre/0JQ5DAqbMKFCbimwdOYlsl" class="btn" style="background-color: grey;">Focus</a>
+            <a href="https://music.youtube.com/playlist?list=RDCLAK5uy_l_-bkAWxwLfu2U0xUsgHsAqlwYL6XjbKg" class="btn" style="background-color: plum;">Party</a>
+            <a href="https://music.youtube.com/playlist?list=RDCLAK5uy_mypHeJ-B5f7-OgrxJcXeiHSotjIJ_UDhQ" class="btn" style="background-color: red;">Romance</a>
+            <a href="https://music.youtube.com/playlist?list=RDCLAK5uy_le5uB3137WE9n3TxANc_r8T3YM8QJlUvo" class="btn" style="background-color: darkgrey;">Sad</a>
+
+            <a href="https://music.youtube.com/playlist?list=RDCLAK5uy_k83Q0BJ_yGLX2nTNKxOXb3BP3Pb7uMIN0" class="btn" style="background-color: violet;">Sleep</a>
+            <a href="https://music.youtube.com/playlist?list=RDCLAK5uy_mruFWTU7l64ssbyo1_xs90DthXP3qbSbg" class="btn" style="background-color: lightcoral;">Workout</a>
+            <a href="https://music.youtube.com/playlist?list=RDCLAK5uy_kFR_dUAeIwAH_KMLOVWjd0Vd-8pviVMCQ" class="btn" style="background-color: green;">African</a>
+            <a href="https://music.youtube.com/playlist?list=RDCLAK5uy_mDmKCequfSvQJxtOPWFHrhkHEYR05z2Cg" class="btn" style="background-color: orange;">Arabic</a>
+
+            <a href="https://music.youtube.com/playlist?list=RDCLAK5uy_nppZBg2AQ7htxIuyqHoMOXX4z2pIjQUP8" class="btn" style="background-color: beige;">Bengali</a>
+            <a href="https://music.youtube.com/playlist?list=RDCLAK5uy_nbSNGivuIVOki77610Ju74DcwzXWRfsd0" class="btn" style="background-color: violet;">Bhojpuri</a>
+            <a href="https://music.youtube.com/playlist?list=RDCLAK5uy_lVHrUZ261gedwUzxmCpbGh_CdJASp7cNE" class="btn" style="background-color: orange;">Carnatic Classical</a>
+            <a href="https://music.youtube.com/playlist?list=RDCLAK5uy_lVHrUZ261gedwUzxmCpbGh_CdJASp7cNE" class="btn" style="background-color: white; color: black;">Classical</a>
+
+            <a href="https://music.youtube.com/playlist?list=RDCLAK5uy_nH_fdBVCcbNaVwi_tmZajZRq-ekddiuFY" class="btn" style="background-color: darkblue;">Country</a>
+            <a href="https://music.youtube.com/playlist?list=RDCLAK5uy_mVJ3RRi_YBfUJnZnQxLAedQQcXHujbUcg" class="btn" style="background-color: #00bcd4;">Electronic</a>
+            <a href="https://music.youtube.com/playlist?list=RDCLAK5uy_mGYde2Wyx9INZd6GbPcMWkxDOu6Utmedw" class="btn" style="background-color: lightpink;">Decades</a>
+            <a href="https://music.youtube.com/playlist?list=RDCLAK5uy_kxopCbV9vQsLvgkV9_ndMAQkEqAcQ6D3I" class="btn" style="background-color: darkorange;">Devotional</a>
+
+            <a href="https://music.youtube.com/playlist?list=RDCLAK5uy_leoTLrB1K_2VcTWqds82dBcjBSjrRfJxw" class="btn" style="background-color: blue;">Family</a>
+            <a href="https://music.youtube.com/playlist?list=RDCLAK5uy_myNQx7St1mEpY7aaqOT5LMDO3EKHwFXyg" class="btn" style="background-color: green;">Folk</a>
+            <a href="https://music.youtube.com/playlist?list=RDCLAK5uy_kt3gC0XuT4rhFT3nXCLAhprwdQ0xieyYA" class="btn" style="background-color: cyan;">Sufi</a>
+            <a href="https://music.youtube.com/playlist?list=RDCLAK5uy_mi8uVo4C6o78LfXcI9pHIu8bkunxmcUjQ" class="btn" style="background-color: yellow;">Gujarati</a>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
